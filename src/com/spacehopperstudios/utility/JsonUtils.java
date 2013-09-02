@@ -14,17 +14,25 @@ import java.util.List;
 public final class JsonUtils {
 
 	/**
-	 * Clean Json method will remove null properties, empty collections, empty
-	 * dictionaries/types
+	 * Clean Json method will remove null properties, empty collections, empty dictionaries/types
 	 * 
 	 * @param json
 	 * @return
 	 */
 	public static String cleanJson(String json) {
-		List<String> values = new ArrayList<String>();
-		String cleaned = strip(json, values);
+		return cleanJson(json, true);
+	}
 
-		cleaned = cleaned.replaceAll("\"[a-zA-z]+[a-zA-Z0-9]*\":null", "");
+	public static String cleanJson(String json, boolean stripStrings) {
+		List<String> values = new ArrayList<String>();
+
+		String stripped = json;
+
+		if (stripStrings) {
+			stripped = strip(json, values);
+		}
+
+		String cleaned = stripped.replaceAll("\"[a-zA-z]+[a-zA-Z0-9]*\":null", "");
 		cleaned = cleaned.replaceAll(",,", ",");
 		cleaned = cleaned.replaceAll(", ", ",");
 		cleaned = cleaned.replaceAll("\\{,", "{");
@@ -40,12 +48,12 @@ public final class JsonUtils {
 		cleaned = cleaned.replaceAll(":,", ":null,");
 		cleaned = cleaned.replaceAll(":\\}", ":null}");
 
-		if (values.size() > 0) {
-			cleaned = putBack(cleaned, values);
+		if (!stripped.equals(cleaned)) {
+			cleaned = JsonUtils.cleanJson(cleaned, false);
 		}
 
-		if (!json.equals(cleaned)) {
-			cleaned = JsonUtils.cleanJson(cleaned);
+		if (values.size() > 0) {
+			cleaned = putBack(cleaned, values);
 		}
 
 		if ("".equals(cleaned) || "{}".equals(cleaned) || "[]".equals(cleaned)) {
@@ -90,9 +98,10 @@ public final class JsonUtils {
 						stripped.replace(stripped.length() - 1, stripped.length(), values.get(values.size() - 1));
 						values.remove(values.size() - 1);
 					}
+					
+					stripped.append(c);
 				}
 
-				stripped.append(c);
 				escaped = false;
 				break;
 			case '\\':

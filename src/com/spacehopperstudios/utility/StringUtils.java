@@ -88,4 +88,22 @@ public class StringUtils {
 
 		return result.toString();
 	}
+	
+	private static String join(Iterable <? extends CharSequence> items, CharSequence glue) {
+		StringBuffer buffer = new StringBuffer();
+		
+		for (CharSequence item : items) {
+			if (buffer.length() != 0) {
+				buffer.append(glue);
+			}
+			
+			buffer.append(item);
+		}
+		
+		return buffer.toString();
+	}
+	
+	public static String join(Iterable <? extends CharSequence> items) {
+		return join(items, ",");
+	}
 }
