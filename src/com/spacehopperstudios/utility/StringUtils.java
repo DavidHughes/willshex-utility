@@ -89,7 +89,7 @@ public class StringUtils {
 		return result.toString();
 	}
 	
-	private static String join(Iterable <? extends CharSequence> items, CharSequence glue) {
+	public static String join(Iterable <? extends CharSequence> items, CharSequence glue) {
 		StringBuffer buffer = new StringBuffer();
 		
 		for (CharSequence item : items) {
