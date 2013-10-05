@@ -88,22 +88,46 @@ public class StringUtils {
 
 		return result.toString();
 	}
-	
-	public static String join(Iterable <? extends CharSequence> items, CharSequence glue) {
+
+	public static String join(Iterable<? extends CharSequence> items, CharSequence glue) {
 		StringBuffer buffer = new StringBuffer();
-		
+
 		for (CharSequence item : items) {
 			if (buffer.length() != 0) {
 				buffer.append(glue);
 			}
-			
+
 			buffer.append(item);
 		}
-		
+
 		return buffer.toString();
 	}
-	
-	public static String join(Iterable <? extends CharSequence> items) {
+
+	public static String join(Iterable<? extends CharSequence> items) {
 		return join(items, ",");
+	}
+
+	private static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", lower = "abcdefghijklmnopqrstuvwxyz";
+
+	public static String rot13(String value) {
+
+		StringBuffer buffer = new StringBuffer(value.length());
+
+		int count = value.length();
+		int index;
+		char c;
+		for (int i = 0; i < count; i++) {
+			c = value.charAt(i);
+
+			if ((index = lower.indexOf(c)) >= 0) {
+				buffer.append(lower.charAt((index + 13) % 26));
+			} else if ((index = upper.indexOf(c)) >= 0) {
+				buffer.append(upper.charAt((index + 13) % 26));
+			} else {
+				buffer.append(c);
+			}
+		}
+
+		return buffer.toString();
 	}
 }
