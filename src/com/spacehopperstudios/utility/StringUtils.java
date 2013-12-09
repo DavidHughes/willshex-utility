@@ -80,6 +80,24 @@ public class StringUtils {
 		return theDigest == null ? null : convertDigestToString(theDigest);
 	}
 
+	public static String md5Hash(String content) {
+		byte[] bytesOfMessage = null;
+		byte[] theDigest = null;
+
+		try {
+			bytesOfMessage = content.getBytes("UTF-8");
+
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			theDigest = md.digest(bytesOfMessage);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+
+		return theDigest == null ? null : convertDigestToString(theDigest);
+	}
+
 	private static String convertDigestToString(byte[] digest) {
 		StringBuffer result = new StringBuffer();
 		for (int i = 0; i < digest.length; i++) {
