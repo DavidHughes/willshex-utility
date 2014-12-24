@@ -32,29 +32,27 @@ public final class JsonUtils {
 			stripped = strip(json, values);
 		}
 
-		String cleaned = stripped.replaceAll("\"[a-zA-z]+[a-zA-Z0-9]*\":null", "");
-		cleaned = cleaned.replaceAll(",,", ",");
-		cleaned = cleaned.replaceAll(", ", ",");
-		cleaned = cleaned.replaceAll("\\{,", "{");
-		cleaned = cleaned.replaceAll(",\\}", "}");
-		cleaned = cleaned.replaceAll("\\[,", "[");
-		cleaned = cleaned.replaceAll(",\\]", "]");
-		cleaned = cleaned.replaceAll(":\\{\\}", ":null");
-		cleaned = cleaned.replaceAll(":\\{ \\}", ":null");
-		cleaned = cleaned.replaceAll(":\\[\\]", ":[]");
-		cleaned = cleaned.replaceAll(":\\[ \\]", ":{}");
-		cleaned = cleaned.replaceAll("\\{\\}", "");
-		cleaned = cleaned.replaceAll("\\[\\]", "");
-		cleaned = cleaned.replaceAll(":,", ":null,");
-		cleaned = cleaned.replaceAll(":\\}", ":null}");
+		String cleaned = stripped;
+		do {
+			stripped = cleaned;
+			cleaned = cleaned.replaceAll("\"[a-zA-z]+[a-zA-Z0-9]*\":null", "");
+			cleaned = cleaned.replaceAll(",,", ",");
+			cleaned = cleaned.replaceAll(", ", ",");
+			cleaned = cleaned.replaceAll("\\{,", "{");
+			cleaned = cleaned.replaceAll(",\\}", "}");
+			cleaned = cleaned.replaceAll("\\[,", "[");
+			cleaned = cleaned.replaceAll(",\\]", "]");
+			cleaned = cleaned.replaceAll(":\\{\\}", ":null");
+			cleaned = cleaned.replaceAll(":\\{ \\}", ":null");
+			cleaned = cleaned.replaceAll(":\\[\\]", ":[]");
+			cleaned = cleaned.replaceAll(":\\[ \\]", ":{}");
+			cleaned = cleaned.replaceAll("\\{\\}", "");
+			cleaned = cleaned.replaceAll("\\[\\]", "");
+			cleaned = cleaned.replaceAll(":,", ":null,");
+			cleaned = cleaned.replaceAll(":\\}", ":null}");
+		} while (!stripped.equals(cleaned));
 
-		if (!stripped.equals(cleaned)) {
-			cleaned = JsonUtils.cleanJson(cleaned, false);
-		}
-
-		if (values.size() > 0) {
-			cleaned = putBack(cleaned, values);
-		}
+		cleaned = putBack(cleaned, values);
 
 		if ("".equals(cleaned) || "{}".equals(cleaned) || "[]".equals(cleaned)) {
 			cleaned = "null";
@@ -98,7 +96,7 @@ public final class JsonUtils {
 						stripped.replace(stripped.length() - 1, stripped.length(), values.get(values.size() - 1));
 						values.remove(values.size() - 1);
 					}
-					
+
 					stripped.append(c);
 				}
 
@@ -123,20 +121,87 @@ public final class JsonUtils {
 	}
 
 	private static String putBack(String stripped, List<String> values) {
-		StringBuilder putBack = new StringBuilder();
+		StringBuilder putBack = null;
 
-		char c;
-		int replaced = 0;
-		for (int i = 0; i < stripped.length(); i++) {
-			c = stripped.charAt(i);
+		if (values.size() > 0) {
+			putBack = new StringBuilder();
+			char c;
+			int replaced = 0;
+			for (int i = 0; i < stripped.length(); i++) {
+				c = stripped.charAt(i);
 
-			if (c == '*') {
-				putBack.append(values.get(replaced++));
-			} else {
-				putBack.append(c);
+				if (c == '*') {
+					putBack.append(values.get(replaced++));
+				} else {
+					putBack.append(c);
+				}
 			}
 		}
 
-		return putBack.toString();
+		return putBack == null ? stripped : putBack.toString();
+	}
+
+	public static String beautifyJson(String json) {
+		return beautifyJson(json, "    ", "\n");
+	}
+
+	public static String beautifyJson(String json, String level, String line) {
+		List<String> values = new ArrayList<String>();
+		String stripped = strip(json, values);
+
+		int length = stripped.length();
+		char current;
+		String indent = "";
+		boolean newLineAfter = true, newLineBefore = false;
+
+		StringBuffer beautifulJson = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			current = stripped.charAt(i);
+
+			if (current == '[' || current == '{') {
+				indent += level;
+				newLineAfter = true;
+			} else if (current == ']' || current == '}') {
+				indent = indent.substring(0, indent.length() - level.length());
+				newLineBefore = true;
+			} else if (current == ',') {
+				newLineAfter = true;
+			}
+
+			if (newLineBefore) {
+				beautifulJson.append(line);
+				beautifulJson.append(indent);
+				newLineBefore = false;
+			}
+
+			beautifulJson.append(current);
+
+			if (newLineAfter) {
+				beautifulJson.append(line);
+				beautifulJson.append(indent);
+				newLineAfter = false;
+			}
+		}
+
+		return putBack(beautifulJson.toString(), values);
+	}
+
+	public static String uglifyJson(String json) {
+		List<String> values = new ArrayList<String>();
+		String stripped = strip(json, values);
+
+		int length = stripped.length();
+		char current;
+
+		StringBuffer uglyJson = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			current = stripped.charAt(i);
+
+			if (current != ' ' && current != '\r' && current != '\n') {
+				uglyJson.append(current);
+			}
+		}
+
+		return putBack(uglyJson.toString(), values);
 	}
 }
