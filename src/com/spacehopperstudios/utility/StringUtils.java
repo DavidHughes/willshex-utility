@@ -125,7 +125,7 @@ public class StringUtils {
 		return join(items, ",");
 	}
 
-	private static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", lower = "abcdefghijklmnopqrstuvwxyz";
+	private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", LOWER = "abcdefghijklmnopqrstuvwxyz";
 
 	public static String rot13(String value) {
 
@@ -137,15 +137,33 @@ public class StringUtils {
 		for (int i = 0; i < count; i++) {
 			c = value.charAt(i);
 
-			if ((index = lower.indexOf(c)) >= 0) {
-				buffer.append(lower.charAt((index + 13) % 26));
-			} else if ((index = upper.indexOf(c)) >= 0) {
-				buffer.append(upper.charAt((index + 13) % 26));
+			if ((index = LOWER.indexOf(c)) >= 0) {
+				buffer.append(LOWER.charAt((index + 13) % 26));
+			} else if ((index = UPPER.indexOf(c)) >= 0) {
+				buffer.append(UPPER.charAt((index + 13) % 26));
 			} else {
 				buffer.append(c);
 			}
 		}
 
 		return buffer.toString();
+	}
+	
+	public static String upperCaseFirstLetter(String value) {
+		String upperCaseFirstLetter = null;
+
+		String firstLetter = value.substring(0, 1);
+		upperCaseFirstLetter = value.replaceFirst(firstLetter, firstLetter.toUpperCase());
+
+		return upperCaseFirstLetter;
+	}
+	
+	public static String lowerCaseFirstLetter(String value) {
+		String lowerCaseFirstLetter = null;
+
+		String firstLetter = value.substring(0, 1);
+		lowerCaseFirstLetter = value.replaceFirst(firstLetter, firstLetter.toLowerCase());
+
+		return lowerCaseFirstLetter;
 	}
 }
