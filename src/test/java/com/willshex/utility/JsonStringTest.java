@@ -1,12 +1,12 @@
 //
 //  JsonStringTest.java
-//  spchopr.utility
+//  com.willshex.utility
 //
 //  Created by billy1380 on 13 Aug 2013.
-//  Copyright © 2013 Spacehopper Studios Ltd. All rights reserved.
+//  Copyright © 2013 WillShex Limited. All rights reserved.
 //
 
-package spchopr.utility;
+package com.willshex.utility;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 
 import org.junit.Test;
 
-import com.spacehopperstudios.utility.JsonUtils;
+import com.willshex.utility.JsonUtils;
 
 /**
  * @author billy1380
@@ -25,7 +25,7 @@ import com.spacehopperstudios.utility.JsonUtils;
 public class JsonStringTest {
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson() {
@@ -34,7 +34,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson1() {
@@ -42,7 +42,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson2() {
@@ -51,7 +51,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson3() {
@@ -59,7 +59,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson4() {
@@ -67,7 +67,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson5() {
@@ -75,7 +75,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson6() {
@@ -83,7 +83,7 @@ public class JsonStringTest {
 	}
 
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void testCleanJson7() {

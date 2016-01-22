@@ -1,11 +1,11 @@
 //
 //  StringUtils.java
-//  JsonSpacecloud
+//  com.willshex.utility
 //
 //  Created by William Shakour on Jun 14, 2012.
-//  Copyright © 2012 Spacehopper Studios Ltd. All rights reserved.
+//  Copyright © 2012 WillShex Limited. All rights reserved.
 //
-package com.spacehopperstudios.utility;
+package com.willshex.utility;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

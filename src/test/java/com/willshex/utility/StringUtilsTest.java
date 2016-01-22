@@ -1,17 +1,17 @@
 //
 //  StringUtilsTest.java
-//  spchopr.utility
+//  com.willshex.utility
 //
 //  Created by William Shakour (billy1380) on 5 Oct 2013.
-//  Copyright © 2013 SPACEHOPPER STUDIOS LTD. All rights reserved.
+//  Copyright © 2013 WillShex Limited. All rights reserved.
 //
-package spchopr.utility;
+package com.willshex.utility;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.spacehopperstudios.utility.StringUtils;
+import com.willshex.utility.StringUtils;
 
 /**
  * @author billy1380
@@ -19,7 +19,7 @@ import com.spacehopperstudios.utility.StringUtils;
  */
 public class StringUtilsTest {
 	/**
-	 * Test method for {@link com.spacehopperstudios.utility.JsonUtils#cleanJson(java.lang.String)} .
+	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
 	public void toAndFro() {
