@@ -18,11 +18,11 @@ public final class JsonUtils {
 	 * @param json
 	 * @return
 	 */
-	public static String cleanJson(String json) {
+	public static String cleanJson (String json) {
 		return cleanJson(json, true);
 	}
 
-	public static String cleanJson(String json, boolean stripStrings) {
+	private static String cleanJson (String json, boolean stripStrings) {
 		List<String> values = new ArrayList<String>();
 
 		String stripped = json;
@@ -53,16 +53,16 @@ public final class JsonUtils {
 
 		cleaned = putBack(cleaned, values);
 
-		if ("".equals(cleaned) || "{}".equals(cleaned) || "[]".equals(cleaned)) {
+		if ("".equals(cleaned) || "{}".equals(cleaned)
+				|| "[]".equals(cleaned)) {
 			cleaned = "null";
 		}
 
 		return cleaned;
 	}
 
-	private static String strip(String json, List<String> values) {
-		if (values == null)
-			return json;
+	private static String strip (String json, List<String> values) {
+		if (values == null) return json;
 
 		StringBuffer stripped = new StringBuffer(json.length());
 
@@ -91,8 +91,12 @@ public final class JsonUtils {
 				break;
 			case ':':
 				if (!inStringValue) {
-					if (stripped.substring(stripped.length() - 1, stripped.length()).equals("*")) {
-						stripped.replace(stripped.length() - 1, stripped.length(), values.get(values.size() - 1));
+					if (stripped
+							.substring(stripped.length() - 1, stripped.length())
+							.equals("*")) {
+						stripped.replace(stripped.length() - 1,
+								stripped.length(),
+								values.get(values.size() - 1));
 						values.remove(values.size() - 1);
 					}
 
@@ -119,7 +123,7 @@ public final class JsonUtils {
 		return stripped.toString();
 	}
 
-	private static String putBack(String stripped, List<String> values) {
+	private static String putBack (String stripped, List<String> values) {
 		StringBuilder putBack = null;
 
 		if (values.size() > 0) {
@@ -140,11 +144,23 @@ public final class JsonUtils {
 		return putBack == null ? stripped : putBack.toString();
 	}
 
-	public static String beautifyJson(String json) {
+	/**
+	 * Beautify json string indenting with 4 spaces and adding line ends with \n
+	 * @param json ugly gson
+	 * @return processed json
+	 */
+	public static String beautifyJson (String json) {
 		return beautifyJson(json, "    ", "\n");
 	}
 
-	public static String beautifyJson(String json, String level, String line) {
+	/**
+	 * Beautify json string indenting
+	 * @param json ugly gson
+	 * @param level string to indet with
+	 * @param line line end string
+	 * @return processed json
+	 */
+	public static String beautifyJson (String json, String level, String line) {
 		List<String> values = new ArrayList<String>();
 		String stripped = strip(json, values);
 
@@ -185,7 +201,7 @@ public final class JsonUtils {
 		return putBack(beautifulJson.toString(), values);
 	}
 
-	public static String uglifyJson(String json) {
+	public static String uglifyJson (String json) {
 		List<String> values = new ArrayList<String>();
 		String stripped = strip(json, values);
 
