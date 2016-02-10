@@ -269,4 +269,16 @@ public class StringUtils {
 	public static String restrict (String value) {
 		return restrict(value, ALLOWED_CHARS, "-", 100);
 	}
+
+	public static String camelCase (String value) {
+		throw new UnsupportedOperationException("camelCase");
+	}
+
+	public static String pascalCase (String value) {
+		throw new UnsupportedOperationException("pascalCase");
+	}
+
+	public static String sentence (String value, boolean capital, String append) {
+		throw new UnsupportedOperationException();
+	}
 }
