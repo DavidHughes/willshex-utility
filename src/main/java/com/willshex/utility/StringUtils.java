@@ -224,4 +224,49 @@ public class StringUtils {
 
 		return lowerCaseFirstLetter;
 	}
+
+	private static final String ALLOWED_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+	/**
+	 * Restricts allowed characters in string to allowed characters
+	 * @param value value to be restricted
+	 * @param allowed a string of all the allowed characters
+	 * @param replacement the character used to replace a disallowed character
+	 * @param maxLength a cap for the maximum characters processed from the value
+	 * @return process/restricted string
+	 */
+	public static String restrict (String value, String allowed,
+			String replacement, int maxLength) {
+		StringBuffer slug = new StringBuffer();
+
+		if (value != null && value.length() > 0) {
+			value = value.toLowerCase();
+
+			int size = Math.min(value.length(), maxLength);
+			char c;
+			boolean replacedOne = false;
+			for (int i = 0; i < size; i++) {
+				c = value.charAt(i);
+
+				if (allowed.contains(Character.toString(c))) {
+					slug.append(c);
+					replacedOne = false;
+				} else if (!replacedOne) {
+					slug.append(replacement);
+					replacedOne = true;
+				}
+			}
+		}
+
+		return slug.toString();
+	}
+
+	/**
+	 * Returns up to 100 character string restricted to abcdefghijklmnopqrstuvwxyz0123456789 with disallowed spaces replaced with -
+	 * @param value value to be restricted
+	 * @return process/restricted string
+	 */
+	public static String restrict (String value) {
+		return restrict(value, ALLOWED_CHARS, "-", 100);
+	}
 }
