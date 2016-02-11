@@ -278,7 +278,13 @@ public class StringUtils {
 		throw new UnsupportedOperationException("pascalCase");
 	}
 
-	public static String sentence (String value, boolean capital, String append) {
-		throw new UnsupportedOperationException();
+	public static String expandByCase (String value, boolean capitalFirst,
+			boolean capitalAfterSpace, String space, String append) {
+		throw new UnsupportedOperationException("expandByCase");
+	}
+
+	public static String constantName (String value, String prefix,
+			String suffix) {
+		throw new UnsupportedOperationException("constantName");
 	}
 }

@@ -22,13 +22,13 @@ public class StringUtilsTest {
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void toAndFro () {
+	public void rot13ToAndFroTest () {
 		assertEquals("test", StringUtils.rot13(StringUtils.rot13("test")));
 
 	}
 
 	@Test
-	public void loremIpsum () {
+	public void rot13LoremIpsumTest () {
 		assertEquals(
 				"Yberz vcfhz qbybe fvg nzrg, pbafrpgrghe nqvcvfpvat ryvg. Cryyragrfdhr hean avfy, snhpvohf cbegn chehf rtrg, fbyyvpvghqva ynpvavn hean. Rgvnz fhfpvcvg whfgb sevatvyyn, ryrvsraq qhv frq, ryrvsraq bqvb. Qhvf aba zntan avfy. Ahyynz aba ravz ivgnr zntan nyvdhrg fpryrevfdhr ivgnr vq gbegbe. Znrpranf qncvohf iryvg ivgnr fpryrevfdhr pbainyyvf. Znhevf qbybe frz, grzcbe iry pbzzbqb n, ynpvavn arp ynphf. Ahyynz frq qvnz neph. Nrarna ardhr hean, ryrvsraq aba avfv hg, grzcbe fbqnyrf gbegbe. Shfpr cunergen, bepv np gvapvqhag znggvf, ahap dhnz fpryrevfdhr nhthr, fbyyvpvghqva srhtvng zntan gryyhf n ardhr. Phz fbpvvf angbdhr crangvohf rg zntavf qvf cneghevrag zbagrf, anfprghe evqvphyhf zhf. Cunfryyhf tenivqn beaner neph dhvf pbaqvzraghz. Shfpr fvg nzrg pbaqvzraghz zrghf.\n\nNrarna fntvggvf ahyyn fvg nzrg ahap snpvyvfvf, qncvohf phefhf reng pbafrpgrghe. Nrarna evfhf zntan, pbafrdhng frq ghecvf va, pbzzbqb pbafrpgrghe ryvg. Qhvf ryrvsraq bqvb vagreqhz bqvb nyvdhrg gevfgvdhr. Shfpr iry bqvb pbaqvzraghz, fbyyvpvghqva yrb fvg nzrg, zbyrfgvr rebf. Vagrtre np qbybe rfg. Qbarp qvtavffvz cryyragrfdhr qncvohf. Znhevf dhvf zbyyvf ahyyn, iry inevhf chehf. Phenovghe snpvyvfvf chyivane zv iry ryrvsraq. Qbarp iry hean cbfhrer, eubaphf gbegbe iry, inevhf sryvf. Irfgvohyhz iry avfv aba avou beaner ryrvsraq ivgnr pbzzbqb avou. Nyvdhnz eubaphf yhpghf iryvg aba fbqnyrf. Cebva n gbegbe rg qbybe qvtavffvz irfgvohyhz. Cebva avou avou, frzcre np fbyyvpvghqva frq, qvpghz ivgnr ghecvf.\n\nNrarna rh ardhr gvapvqhag, cbegn qbybe fvg nzrg, snhpvohf sryvf. Ahyyn snpvyvfv. Nrarna snhpvohf zv chyivane ryrvsraq rtrfgnf. Ahap znyrfhnqn ravz vq qvnz beaner znyrfhnqn. Va n frz aba ynphf srezraghz vagreqhz. Cenrfrag eubaphf gvapvqhag srhtvng. Fhfcraqvffr rhvfzbq rebf aba cynpreng pbaqvzraghz. Qbarp n cryyragrfdhr dhnz, ng cunergen fncvra. Ahyyn ivgnr frz rh qvnz uraqerevg hygevpvrf vq rh bqvb.\n\nIrfgvohyhz cunergen ybobegvf qvnz, frq cergvhz evfhf pbzzbqb np. Zbeov vq nagr znggvf, hyynzpbecre gbegbe dhvf, vagreqhz yvoreb. Fhfcraqvffr tenivqn eubaphf ahyyn, hyynzpbecre tenivqn avfy. Cunfryyhf iruvphyn qhv frq bepv pbafrpgrghe pbathr. Anz qvpghz ynpvavn yberz, rh ehgehz reng ehgehz rtrg. Qbarp vzcreqvrg ynpvavn neph, rg fhfpvcvg bepv pbafrpgrghe ng. Qbarp yhpghf ryvg yrb, ynberrg npphzfna ahap uraqerevg np. Frq whfgb rfg, ryrzraghz fvg nzrg gryyhf ivgnr, eubaphf pbzzbqb ahyyn. Cunfryyhf znhevf ghecvf, vzcreqvrg dhvf zrghf rtrg, grzcbe oynaqvg ahyyn. Irfgvohyhz iry inevhf yrb. Rgvnz hygevprf dhvf ghecvf ng pbzzbqb. Cenrfrag ivireen eubaphf neph, aba ibyhgcng znhevf yhpghf np. Anz inevhf ahap vq nagr pbaqvzraghz qvpghz frq aba ynphf. Cunfryyhf va irfgvohyhz ryvg. Vagrtre fbyyvpvghqva whfgb pbafrpgrghe, zbyyvf frz ivgnr, tenivqn znffn.\n\nCebva pbathr, gbegbe vq znyrfhnqn nyvdhnz, avfv avfv nhpgbe fncvra, iry oynaqvg avfy hean aba ynphf. Dhvfdhr eubaphf ibyhgcng yrb, fvg nzrg grzcbe zrghf vnphyvf n. Frq rg avfy iruvphyn, fbyyvpvghqva ghecvf np, uraqerevg nhthr. Frq fhfpvcvg tenivqn yhpghf. Phenovghe vq fbqnyrf gbegbe. Penf ng oynaqvg znhevf. Hg cbegn inevhf iryvg, qncvohf ybobegvf ghecvf beaner n. Cryyragrfdhr unovgnag zbeov gevfgvdhr frarpghf rg arghf rg znyrfhnqn snzrf np ghecvf rtrfgnf. Zbeov pbathr vcfhz np inevhf ynberrg. Ahap arp gvapvqhag ynphf, hg yhpghf yvthyn. Phenovghe hygevpvrf gvapvqhag zbyrfgvr. Qbarp hygevpvrf nyvdhrg srezraghz. Shfpr frq fhfpvcvg znhevf, sevatvyyn qncvohf rebf.",
 				StringUtils.rot13(
@@ -61,4 +61,58 @@ public class StringUtilsTest {
 				StringUtils.restrict("123 make toxic brew for; 4 and 56",
 						"abcdefghijklmnopqrstuvwxyz", "-", 10000));
 	}
+
+	@Test
+	public void camelCaseTest () {
+		assertEquals("my1ValueProperty",
+				StringUtils.camelCase("123 my 1 value property"));
+
+		assertEquals("myproperty123", StringUtils.camelCase("myproperty123"));
+
+		assertEquals("myproperty123", StringUtils.camelCase("myProperty123"));
+
+		assertEquals("my123Property456Property",
+				StringUtils.camelCase("my123 Prproperty 456 property"));
+	}
+
+	@Test
+	public void pascalCaseTest () {
+		assertEquals("My1ValueProperty",
+				StringUtils.camelCase("123 my 1 value property"));
+
+		assertEquals("Myproperty123", StringUtils.camelCase("myproperty123"));
+
+		assertEquals("Myproperty123", StringUtils.camelCase("myProperty123"));
+
+		assertEquals("My123Property456Property",
+				StringUtils.camelCase("my123 Prproperty 456 property"));
+	}
+
+	@Test
+	public void expandByCaseTest () {
+		assertEquals("My 1 value property.", StringUtils
+				.expandByCase("My1ValueProperty", true, false, " ", "."));
+
+		assertEquals("My 1 value property.", StringUtils
+				.expandByCase("my1ValueProperty", true, false, " ", "."));
+
+		assertEquals("myproperty 123", StringUtils.expandByCase("Myproperty123",
+				false, true, " ", ""));
+
+		assertEquals("my Property 123", StringUtils
+				.expandByCase("Myproperty123", false, true, " ", ""));
+
+		assertEquals("my_123_Prproperty_456_Property", StringUtils.expandByCase(
+				"My123Property456Property", false, true, "_", ""));
+
+		assertEquals("!7 my_123_Prproperty_456_Property",
+				StringUtils.expandByCase("!7My123Property456property", false,
+						true, "_", ""));
+	}
+
+	@Test
+	public void constantNameTest () {
+
+	}
+
 }
