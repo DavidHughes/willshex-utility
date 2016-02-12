@@ -237,7 +237,7 @@ public class StringUtils {
 	 */
 	public static String restrict (String value, String allowed,
 			String replacement, int maxLength) {
-		StringBuffer slug = new StringBuffer();
+		StringBuffer restricted = new StringBuffer();
 
 		if (value != null && value.length() > 0) {
 			value = value.toLowerCase();
@@ -249,16 +249,16 @@ public class StringUtils {
 				c = value.charAt(i);
 
 				if (allowed.contains(Character.toString(c))) {
-					slug.append(c);
+					restricted.append(c);
 					replacedOne = false;
 				} else if (!replacedOne) {
-					slug.append(replacement);
+					restricted.append(replacement);
 					replacedOne = true;
 				}
 			}
 		}
 
-		return slug.toString();
+		return restricted.toString();
 	}
 
 	/**
@@ -270,12 +270,102 @@ public class StringUtils {
 		return restrict(value, ALLOWED_CHARS, "-", 100);
 	}
 
+	private static final String NUMBERS = "0123456789";
+
+	private static final String CAMEL_PASCAL_ALLOWED = UPPER + LOWER + NUMBERS;
+
 	public static String camelCase (String value) {
-		throw new UnsupportedOperationException("camelCase");
+		StringBuffer restricted = new StringBuffer();
+
+		if (value != null && value.length() > 0) {
+			int size = value.length();
+			boolean replacedOne = false;
+			boolean foundOne = false;
+			String characterAsString;
+			for (int i = 0; i < size; i++) {
+				characterAsString = Character.toString(value.charAt(i));
+
+				if (CAMEL_PASCAL_ALLOWED.contains(characterAsString)) {
+					if (LOWER.contains(characterAsString)) {
+						if (foundOne) {
+							if (replacedOne) {
+								restricted.append(
+										characterAsString.toUpperCase());
+							} else {
+								restricted.append(characterAsString);
+							}
+						} else {
+							restricted.append(characterAsString);
+						}
+
+						replacedOne = false;
+						foundOne = true;
+					} else if (UPPER.contains(characterAsString)) {
+						if (foundOne) {
+							restricted.append(characterAsString);
+						} else {
+							restricted.append(characterAsString.toLowerCase());
+						}
+
+						replacedOne = false;
+						foundOne = true;
+					} else if (foundOne) {
+						// must be a number
+						restricted.append(characterAsString);
+						replacedOne = false;
+					}
+				} else if (foundOne && !replacedOne) {
+					replacedOne = true;
+				}
+			}
+		}
+
+		return restricted.toString();
 	}
 
 	public static String pascalCase (String value) {
-		throw new UnsupportedOperationException("pascalCase");
+		StringBuffer restricted = new StringBuffer();
+
+		if (value != null && value.length() > 0) {
+			int size = value.length();
+			boolean replacedOne = false;
+			boolean foundOne = false;
+			String characterAsString;
+			for (int i = 0; i < size; i++) {
+				characterAsString = Character.toString(value.charAt(i));
+
+				if (CAMEL_PASCAL_ALLOWED.contains(characterAsString)) {
+					if (LOWER.contains(characterAsString)) {
+						if (foundOne) {
+							if (replacedOne) {
+								restricted.append(
+										characterAsString.toUpperCase());
+							} else {
+								restricted.append(characterAsString);
+							}
+						} else {
+							restricted.append(characterAsString.toUpperCase());
+						}
+
+						replacedOne = false;
+						foundOne = true;
+					} else if (UPPER.contains(characterAsString)) {
+						restricted.append(characterAsString);
+
+						replacedOne = false;
+						foundOne = true;
+					} else if (foundOne) {
+						// must be a number
+						restricted.append(characterAsString);
+						replacedOne = false;
+					}
+				} else if (foundOne && !replacedOne) {
+					replacedOne = true;
+				}
+			}
+		}
+
+		return restricted.toString();
 	}
 
 	public static String expandByCase (String value, boolean capitalFirst,
