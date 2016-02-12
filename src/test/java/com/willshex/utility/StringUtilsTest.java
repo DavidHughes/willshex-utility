@@ -66,23 +66,23 @@ public class StringUtilsTest {
 
 		assertEquals("myproperty123", StringUtils.camelCase("myproperty123"));
 
-		assertEquals("myproperty123", StringUtils.camelCase("myProperty123"));
+		assertEquals("myProperty123", StringUtils.camelCase("myProperty123"));
 
 		assertEquals("my123Property456Property",
-				StringUtils.camelCase("my123 Prproperty 456 property"));
+				StringUtils.camelCase("my123 Property 456 property"));
 	}
 
 	@Test
 	public void pascalCaseTest () {
 		assertEquals("My1ValueProperty",
-				StringUtils.camelCase("123 my 1 value property"));
+				StringUtils.pascalCase("123 my 1 value property"));
 
-		assertEquals("Myproperty123", StringUtils.camelCase("myproperty123"));
+		assertEquals("Myproperty123", StringUtils.pascalCase("myproperty123"));
 
-		assertEquals("Myproperty123", StringUtils.camelCase("myProperty123"));
+		assertEquals("MyProperty123", StringUtils.pascalCase("myProperty123"));
 
 		assertEquals("My123Property456Property",
-				StringUtils.camelCase("my123 Prproperty 456 property"));
+				StringUtils.pascalCase("my123 Property 456 property"));
 	}
 
 	@Test
