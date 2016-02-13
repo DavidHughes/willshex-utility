@@ -97,19 +97,26 @@ public class StringUtilsTest {
 				false, true, " ", ""));
 
 		assertEquals("my Property 123", StringUtils
-				.expandByCase("Myproperty123", false, true, " ", ""));
+				.expandByCase("MyProperty123", false, true, " ", ""));
 
-		assertEquals("my_123_Prproperty_456_Property", StringUtils.expandByCase(
+		assertEquals("my_123_Property_456_Property", StringUtils.expandByCase(
 				"My123Property456Property", false, true, "_", ""));
 
-		assertEquals("!7 my_123_Prproperty_456_Property",
+		assertEquals("!_7_My_123_Property_456_Property",
 				StringUtils.expandByCase("!7My123Property456property", false,
+						true, "_", ""));
+
+		// leave garbage alone
+		assertEquals("!__--<>>><_7_My_123_Property!__--<>>><_456_Property",
+				StringUtils.expandByCase(
+						"!__--<>>><7My123Property!__--<>>><456property", false,
 						true, "_", ""));
 	}
 
 	@Test
 	public void constantNameTest () {
-
+		assertEquals("k_SOME_SENTENCE_KEY",
+				StringUtils.constantName("some sentence", "k", "KEY"));
 	}
 
 }

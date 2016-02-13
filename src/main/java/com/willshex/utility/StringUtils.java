@@ -370,7 +370,60 @@ public class StringUtils {
 
 	public static String expandByCase (String value, boolean capitalFirst,
 			boolean capitalAfterSpace, String space, String append) {
-		throw new UnsupportedOperationException("expandByCase");
+		StringBuffer expanded = new StringBuffer();
+		if (value != null && value.length() > 0) {
+			int size = value.length();
+			boolean inNumbers = false, isNumber = false, addSpace = false;
+			String characterAsString;
+			for (int i = 0; i < size; i++) {
+				characterAsString = Character.toString(value.charAt(i));
+				addSpace = false;
+				isNumber = NUMBERS.contains(characterAsString);
+
+				if (inNumbers) {
+					if (!isNumber) {
+						addSpace = true;
+						inNumbers = false;
+					}
+				} else {
+					if (isNumber) {
+						addSpace = true;
+						inNumbers = true;
+					}
+				}
+
+				if (i == 0) {
+					if (capitalFirst) {
+						expanded.append(characterAsString.toUpperCase());
+					} else {
+						expanded.append(characterAsString.toLowerCase());
+					}
+				} else {
+					if (!addSpace && UPPER.contains(characterAsString)) {
+						addSpace = true;
+					}
+
+					if (addSpace) {
+						expanded.append(space);
+					}
+
+					if (addSpace && capitalAfterSpace) {
+						expanded.append(characterAsString.toUpperCase());
+					} else {
+						if (!isNumber) {
+							expanded.append(characterAsString.toLowerCase());
+						} else {
+							expanded.append(characterAsString);
+						}
+					}
+				}
+			}
+
+			expanded.append(append);
+		}
+
+		return expanded.toString();
+
 	}
 
 	public static String constantName (String value, String prefix,
