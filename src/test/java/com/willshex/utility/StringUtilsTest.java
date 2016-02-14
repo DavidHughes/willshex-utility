@@ -116,7 +116,19 @@ public class StringUtilsTest {
 	@Test
 	public void constantNameTest () {
 		assertEquals("k_SOME_SENTENCE_KEY",
-				StringUtils.constantName("some sentence", "k", "KEY"));
+				StringUtils.constantName("Some sentence", "k", "KEY"));
+		
+		assertEquals("SOME_SENTENCE",
+				StringUtils.constantName("123 Some sentence", "", ""));
+		
+		assertEquals("SOME_SENTENCE",
+				StringUtils.constantName("123  Some  sentence", "", ""));
+		
+		assertEquals("SOME_123_SENTENCE",
+				StringUtils.constantName("Some 123 sentence", "", ""));
+		
+		assertEquals("SOME_123_SENTENCE_SOME",
+				StringUtils.constantName("Some 123 sentence", "", "SOME"));
 	}
 
 }
