@@ -428,6 +428,55 @@ public class StringUtils {
 
 	public static String constantName (String value, String prefix,
 			String suffix) {
-		throw new UnsupportedOperationException("constantName");
+		StringBuffer constant = new StringBuffer();
+
+		constant.append(prefix);
+
+		boolean addedPrefixSeparator = prefix == null || prefix.length() == 0;
+
+		if (value != null && value.length() > 0) {
+			int size = value.length();
+			boolean replacedOne = false;
+			boolean foundOne = false;
+			String characterAsString;
+			for (int i = 0; i < size; i++) {
+				characterAsString = Character.toString(value.charAt(i));
+
+				if (CAMEL_PASCAL_ALLOWED.contains(characterAsString)) {
+					if (!NUMBERS.contains(characterAsString)) {
+						if (!addedPrefixSeparator) {
+							constant.append("_");
+							addedPrefixSeparator = true;
+						}
+
+						constant.append(characterAsString.toUpperCase());
+
+						replacedOne = false;
+						foundOne = true;
+					} else if (foundOne) {
+						if (!addedPrefixSeparator) {
+							constant.append("_");
+							addedPrefixSeparator = true;
+						}
+
+						constant.append(characterAsString);
+						replacedOne = false;
+					}
+				} else if (foundOne && !replacedOne) {
+					constant.append("_");
+					replacedOne = true;
+				}
+			}
+		}
+
+		if (constant.length() > 0
+				&& constant.charAt(constant.length() - 1) != '_'
+				&& suffix.length() > 0) {
+			constant.append("_");
+		}
+
+		constant.append(suffix);
+
+		return constant.toString();
 	}
 }
