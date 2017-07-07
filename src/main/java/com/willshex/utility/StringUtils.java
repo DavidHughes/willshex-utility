@@ -20,12 +20,12 @@ public class StringUtils {
 
 	private static final String[] ESCAPE_CHARS = { " ", "{", "}", ";", "/", "?",
 			":", "@", "&", "=", "+", "$", ",", "[", "]", "#", "!", "'", "(",
-			")", "*", "\"", "<", ">" };
+			")", "*", "\"", "<", ">", "\n", "\r", "\t" };
 
 	private static final String[] REPLACE_CHARS = { "%20", "%7B", "%7D", "%3B",
 			"%2F", "%3F", "%3A", "%40", "%26", "%3D", "%2B", "%24", "%2C",
 			"%5B", "%5D", "%23", "%21", "%27", "%28", "%29", "%2A", "%22",
-			"%3C", "%3E" };
+			"%3C", "%3E", "%0A", "%0D", "%09" };
 
 	public static String sanitise (String value) {
 		return value;
