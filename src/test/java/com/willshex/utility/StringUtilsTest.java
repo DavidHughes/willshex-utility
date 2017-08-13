@@ -49,10 +49,9 @@ public class StringUtilsTest {
 						"The quick 123 jumps over the lazy 456 with many,;_ consequnces.",
 						"abcdefghijklmnopqrstuvwxyz", "-", 10000));
 
-		assertEquals("the-quick-",
-				StringUtils.restrict(
-						"The quick 123 jumps over the lazy 456 with many,;_ consequnces.",
-						"abcdefghijklmnopqrstuvwxyz", "-", 13));
+		assertEquals("the-quick-", StringUtils.restrict(
+				"The quick 123 jumps over the lazy 456 with many,;_ consequnces.",
+				"abcdefghijklmnopqrstuvwxyz", "-", 13));
 
 		assertEquals("-make-toxic-brew-for-and-",
 				StringUtils.restrict("123 make toxic brew for; 4 and 56",
@@ -117,18 +116,28 @@ public class StringUtilsTest {
 	public void constantNameTest () {
 		assertEquals("k_SOME_SENTENCE_KEY",
 				StringUtils.constantName("Some sentence", "k", "KEY"));
-		
+
 		assertEquals("SOME_SENTENCE",
 				StringUtils.constantName("123 Some sentence", "", ""));
-		
+
 		assertEquals("SOME_SENTENCE",
 				StringUtils.constantName("123  Some  sentence", "", ""));
-		
+
 		assertEquals("SOME_123_SENTENCE",
 				StringUtils.constantName("Some 123 sentence", "", ""));
-		
+
 		assertEquals("SOME_123_SENTENCE_SOME",
 				StringUtils.constantName("Some 123 sentence", "", "SOME"));
+	}
+
+	@Test
+	public void repeatTest () {
+		assertEquals("***", StringUtils.repeat("*", 3));
+
+		assertEquals("", StringUtils.repeat("*", 0));
+		assertEquals("", StringUtils.repeat("*", -1));
+
+		assertEquals("*-*-", StringUtils.repeat("*-", 2));
 	}
 
 }

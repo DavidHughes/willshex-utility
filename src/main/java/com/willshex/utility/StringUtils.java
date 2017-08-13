@@ -659,4 +659,21 @@ public class StringUtils {
 
 		return result.toByteArray();
 	}
+
+	/**
+	 * Returns a string of string repeated count times
+	 * @param string String to repeat. 
+	 * If a negative value is used the result will always be an empty string.
+	 * @param count The number of times to repeat the string 
+	 * @return 
+	 */
+	public static String repeat (String string, int count) {
+		StringBuffer buffer = new StringBuffer();
+
+		for (int i = 0; i < count; i++) {
+			buffer.append(string);
+		}
+
+		return buffer.toString();
+	}
 }
