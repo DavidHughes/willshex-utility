@@ -28,8 +28,9 @@ public class JsonStringTest {
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson() {
-		assertEquals("[null,\"som e\",\"test, \\\" \"]", JsonUtils.cleanJson("[ null ,  \"som e\"   ,   \"test, \\\" \"]   "));
+	public void testCleanJson () {
+		assertEquals("[null,\"som e\",\"test, \\\" \"]", JsonUtils
+				.cleanJson("[ null ,  \"som e\"   ,   \"test, \\\" \"]   "));
 
 	}
 
@@ -37,62 +38,69 @@ public class JsonStringTest {
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson1() {
-		assertEquals("[\"som e\",\"test, \\\" \"]", JsonUtils.cleanJson("[  ,  \"som e\"   ,   \"test, \\\" \"]   "));
+	public void testCleanJson1 () {
+		assertEquals("[\"som e\",\"test, \\\" \"]", JsonUtils
+				.cleanJson("[  ,  \"som e\"   ,   \"test, \\\" \"]   "));
 	}
 
 	/**
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson2() {
+	public void testCleanJson2 () {
 		assertEquals("{\"test\":[\"som e\",\"test, \\\" \"]}",
-		        JsonUtils.cleanJson("{\"test\":[  ,  \"som e\"   ,   \"test, \\\" \"]   ,\"test1\" :  null, \"test3\":}"));
+				JsonUtils.cleanJson(
+						"{\"test\":[  ,  \"som e\"   ,   \"test, \\\" \"]   ,\"test1\" :  null, \"test3\":}"));
 	}
 
 	/**
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson3() {
-		assertEquals("{\"test\":\"hobbit: ses\"}", JsonUtils.cleanJson("{\"test\":\"hobbit: ses\"}"));
+	public void testCleanJson3 () {
+		assertEquals("{\"test\":\"hobbit: ses\"}",
+				JsonUtils.cleanJson("{\"test\":\"hobbit: ses\"}"));
 	}
 
 	/**
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson4() {
-		assertEquals("{\"some\":\"test, \"}", JsonUtils.cleanJson("{\"some\":\"test, \"}"));
+	public void testCleanJson4 () {
+		assertEquals("{\"some\":\"test, \"}",
+				JsonUtils.cleanJson("{\"some\":\"test, \"}"));
 	}
 
 	/**
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson5() {
-		assertEquals("{\"some\":\"test, \"}", JsonUtils.cleanJson("{\"some\"   :   \"test, \"}"));
+	public void testCleanJson5 () {
+		assertEquals("{\"some\":\"test, \"}",
+				JsonUtils.cleanJson("{\"some\"   :   \"test, \"}"));
 	}
 
 	/**
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson6() {
-		assertEquals("[\"som e\",\"test, \"]", JsonUtils.cleanJson("[\"som e\",\"test, \"]"));
+	public void testCleanJson6 () {
+		assertEquals("[\"som e\",\"test, \"]",
+				JsonUtils.cleanJson("[\"som e\",\"test, \"]"));
 	}
 
 	/**
 	 * Test method for {@link com.willshex.utility.JsonUtils#cleanJson(java.lang.String)} .
 	 */
 	@Test
-	public void testCleanJson7() {
-		assertEquals("[\"som e\",\"test, \\\" \"]", JsonUtils.cleanJson("[\"som e\",\"test, \\\" \"]"));
+	public void testCleanJson7 () {
+		assertEquals("[\"som e\",\"test, \\\" \"]",
+				JsonUtils.cleanJson("[\"som e\",\"test, \\\" \"]"));
 	}
 
 	private static String uglyJson = null, beautifulJson = null;
 
-	private static void getFiles() throws IOException {
+	private static void getFiles () throws IOException {
 		StringBuffer buffer = null;
 		char[] chars = null;
 		int read;
@@ -101,7 +109,8 @@ public class JsonStringTest {
 		if (uglyJson == null) {
 			buffer = new StringBuffer();
 			chars = new char[1024];
-			reader = new BufferedReader(new InputStreamReader(StringUtilsTest.class.getResourceAsStream("res/ugly.json")));
+			reader = new BufferedReader(new InputStreamReader(
+					JsonStringTest.class.getResourceAsStream("res/ugly.json")));
 
 			while ((read = reader.read(chars)) > 0) {
 				buffer.append(chars, 0, read);
@@ -123,7 +132,9 @@ public class JsonStringTest {
 				chars = new char[1024];
 			}
 
-			reader = new BufferedReader(new InputStreamReader(StringUtilsTest.class.getResourceAsStream("res/beautiful.json")));
+			reader = new BufferedReader(
+					new InputStreamReader(JsonStringTest.class
+							.getResourceAsStream("res/beautiful.json")));
 
 			while ((read = reader.read(chars)) > 0) {
 				buffer.append(chars, 0, read);
@@ -136,13 +147,13 @@ public class JsonStringTest {
 	}
 
 	@Test
-	public void testBeautifyJson() throws IOException {
+	public void testBeautifyJson () throws IOException {
 		getFiles();
 		assertEquals(beautifulJson, JsonUtils.beautifyJson(uglyJson));
 	}
 
 	@Test
-	public void testUglifyJson() throws IOException {
+	public void testUglifyJson () throws IOException {
 		getFiles();
 		assertEquals(uglyJson, JsonUtils.uglifyJson(beautifulJson));
 	}
