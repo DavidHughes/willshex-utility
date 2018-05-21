@@ -140,4 +140,14 @@ public class StringUtilsTest {
 		assertEquals("*-*-", StringUtils.repeat("*-", 2));
 	}
 
+	@Test
+	public void urlEncodeTest () {
+		assertEquals("test", StringUtils.urlencode("test"));
+	}
+
+	@Test
+	public void urlDecodeTest () {
+		assertEquals("test", StringUtils.urldecode("test"));
+	}
+
 }

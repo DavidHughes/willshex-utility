@@ -11,6 +11,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author William Shakour
@@ -24,7 +27,7 @@ public class StringUtils {
 			"‚", "ƒ", "„", "…", "†", "‡", "ˆ", "‰", "Š", "‹", "Œ", "", "Ž",
 			"", "", "‘", "’", "“", "”", "•", "–", "—", "˜", "™", "š", "›",
 			"œ", "", "ž", "Ÿ", " ", "¡", "¢", "£", "¤", "¥", "¦", "§", "¨",
-			"©", "ª", "«", "¬", "%AD", "®", "¯", "°", "±", "²", "³", "´", "µ",
+			"©", "ª", "«", "¬", "\u00AD", "®", "¯", "°", "±", "²", "³", "´", "µ",
 			"¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â",
 			"Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï",
 			"Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü",
@@ -43,7 +46,7 @@ public class StringUtils {
 			"%CB%9C", "%E2%84", "%C5%A1", "%E2%80", "%C5%93", "%9D", "%C5%BE",
 			"%C5%B8", "%C2%A0", "%C2%A1", "%C2%A2", "%C2%A3", "%C2%A4",
 			"%C2%A5", "%C2%A6", "%C2%A7", "%C2%A8", "%C2%A9", "%C2%AA",
-			"%C2%AB", "%C2%AC", "", "%C2%AE", "%C2%AF", "%C2%B0", "%C2%B1",
+			"%C2%AB", "%C2%AC", "%C2%AC", "%C2%AE", "%C2%AF", "%C2%B0", "%C2%B1",
 			"%C2%B2", "%C2%B3", "%C2%B4", "%C2%B5", "%C2%B6", "%C2%B7",
 			"%C2%B8", "%C2%B9", "%C2%BA", "%C2%BB", "%C2%BC", "%C2%BD",
 			"%C2%BE", "%C2%BF", "%C3%80", "%C3%81", "%C3%82", "%C3%83",
@@ -709,4 +712,45 @@ public class StringUtils {
 
 		return buffer.toString();
 	}
+
+	public static Collection<String> longestCommonParts (String lhs,
+			String rhs) {
+		int[][] table = new int[lhs.length()][rhs.length()];
+		int longest = 0;
+		Set<String> result = new HashSet<>();
+
+		for (int i = 0; i < lhs.length(); i++) {
+			for (int j = 0; j < rhs.length(); j++) {
+				if (lhs.charAt(i) == rhs.charAt(j)) {
+					table[i][j] = (i == 0 || j == 0) ? 1
+							: 1 + table[i - 1][j - 1];
+					if (table[i][j] > longest) {
+						longest = table[i][j];
+						result.clear();
+					}
+
+					if (table[i][j] == longest) {
+						result.add(lhs.substring(i - longest + 1, i + 1));
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static String commonPrefix (String lhs, String rhs) {
+		final int count = Math.min(lhs.length(), rhs.length());
+		int index = 0;
+		for (int i = 0; i < count; i++) {
+			if (lhs.charAt(i) != rhs.charAt(i)) {
+				break;
+			}
+
+			index = i;
+		}
+
+		return index == 0 ? "" : lhs.substring(0, index + 1);
+	}
+
 }
