@@ -150,4 +150,17 @@ public class StringUtilsTest {
 		assertEquals("test", StringUtils.urldecode("test"));
 	}
 
+	@Test
+	public void trimTest () {
+//		assertEquals("123", StringUtils.trim("000123000000", '0'));
+//		assertEquals("", StringUtils.trim("", '0'));
+//		assertEquals("123", StringUtils.trim("123000000", '0'));
+//		assertEquals("123", StringUtils.trim("00000123", '0'));
+//		assertEquals("123", StringUtils.trim("123", '0'));
+//		assertEquals("123", StringUtils.trim("123000000", '0'));
+//		assertEquals("123", StringUtils.trim("1230", '0'));
+//		assertEquals("123", StringUtils.trim("0123", '0'));
+		assertEquals("", StringUtils.trim("00000000", '0'));
+	}
+
 }
