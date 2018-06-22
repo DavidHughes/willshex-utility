@@ -784,4 +784,32 @@ public class StringUtils {
 		return trimmed;
 	}
 
+	public static Collection<String> matchParts (String... strings) {
+		Set<String> matchParts = new HashSet<>();
+
+		if (strings != null) {
+			String[] split;
+			String modified;
+			StringBuffer buffer = new StringBuffer();
+
+			for (String string : strings) {
+				modified = restrict(string, ALLOWED_CHARS, " ",
+						Integer.MAX_VALUE);
+				split = modified.split(" ");
+				for (String part : split) {
+					if (part != null && !part.isEmpty()) {
+						buffer.setLength(0);
+
+						for (int i = 0; i < part.length() - 1; i++) {
+							buffer.append(part.charAt(i));
+							matchParts.add(buffer.toString());
+						}
+					}
+				}
+			}
+		}
+
+		return matchParts;
+	}
+
 }

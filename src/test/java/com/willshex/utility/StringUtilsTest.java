@@ -7,11 +7,15 @@
 //
 package com.willshex.utility;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.junit.Test;
-
-import com.willshex.utility.StringUtils;
 
 /**
  * @author billy1380
@@ -152,15 +156,46 @@ public class StringUtilsTest {
 
 	@Test
 	public void trimTest () {
-//		assertEquals("123", StringUtils.trim("000123000000", '0'));
-//		assertEquals("", StringUtils.trim("", '0'));
-//		assertEquals("123", StringUtils.trim("123000000", '0'));
-//		assertEquals("123", StringUtils.trim("00000123", '0'));
-//		assertEquals("123", StringUtils.trim("123", '0'));
-//		assertEquals("123", StringUtils.trim("123000000", '0'));
-//		assertEquals("123", StringUtils.trim("1230", '0'));
-//		assertEquals("123", StringUtils.trim("0123", '0'));
+		assertEquals("123", StringUtils.trim("000123000000", '0'));
+		assertEquals("", StringUtils.trim("", '0'));
+		assertEquals("123", StringUtils.trim("123000000", '0'));
+		assertEquals("123", StringUtils.trim("00000123", '0'));
+		assertEquals("123", StringUtils.trim("123", '0'));
+		assertEquals("123", StringUtils.trim("123000000", '0'));
+		assertEquals("123", StringUtils.trim("1230", '0'));
+		assertEquals("123", StringUtils.trim("0123", '0'));
 		assertEquals("", StringUtils.trim("00000000", '0'));
+	}
+
+	@Test
+	public void testTokeniser () {
+		Collection<String> tokenised = StringUtils.matchParts("test");
+
+		assertNotNull(tokenised);
+
+		tokenised = new ArrayList<>(tokenised);
+		Collections.sort((ArrayList<String>) tokenised);
+
+		assertArrayEquals(new String[] { "t", "te", "tes" },
+				tokenised.toArray());
+
+		tokenised = StringUtils.matchParts("test", "runner", "bob", "run fast ",
+				null, " nerdy classy fasty");
+
+		assertNotNull(tokenised);
+
+		tokenised = new ArrayList<>(tokenised);
+		Collections.sort((ArrayList<String>) tokenised);
+
+		assertArrayEquals(
+				new String[] { "b", "bo", "c", "cl", "cla", "clas", "class",
+						"f", "fa", "fas", "fast", "n", "ne", "ner", "nerd", "r",
+						"ru", "run", "runn", "runne", "t", "te", "tes" },
+				tokenised.toArray());
+
+		tokenised = StringUtils.matchParts(null);
+
+		assertNotNull(tokenised);
 	}
 
 }
