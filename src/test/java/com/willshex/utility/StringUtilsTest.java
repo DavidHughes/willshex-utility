@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -169,7 +170,8 @@ public class StringUtilsTest {
 
 	@Test
 	public void testTokeniser () {
-		Collection<String> tokenised = StringUtils.matchParts("test");
+		Collection<String> tokenised = StringUtils
+				.matchParts(Arrays.asList("test"));
 
 		assertNotNull(tokenised);
 
@@ -179,8 +181,8 @@ public class StringUtilsTest {
 		assertArrayEquals(new String[] { "t", "te", "tes" },
 				tokenised.toArray());
 
-		tokenised = StringUtils.matchParts("test", "runner", "bob", "run fast ",
-				null, " nerdy classy fasty");
+		tokenised = StringUtils.matchParts(Arrays.asList("test", "runner",
+				"bob", "run fast ", null, " nerdy classy fasty"));
 
 		assertNotNull(tokenised);
 

@@ -784,7 +784,7 @@ public class StringUtils {
 		return trimmed;
 	}
 
-	public static Collection<String> matchParts (String... strings) {
+	public static Collection<String> matchParts (Iterable<String> strings) {
 		Set<String> matchParts = new HashSet<>();
 
 		if (strings != null) {
