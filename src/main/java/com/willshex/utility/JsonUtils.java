@@ -150,7 +150,7 @@ public final class JsonUtils {
 	 * @return processed json
 	 */
 	public static String beautifyJson (String json) {
-		return beautifyJson(json, "    ", "\n");
+		return beautifyJson(json, "    ", System.lineSeparator());
 	}
 
 	/**
