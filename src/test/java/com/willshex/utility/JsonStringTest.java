@@ -149,7 +149,17 @@ public class JsonStringTest {
 	@Test
 	public void testBeautifyJson () throws IOException {
 		getFiles();
+		System.setProperty("line.separator", "\n");
 		assertEquals(beautifulJson, JsonUtils.beautifyJson(uglyJson));
+		System.clearProperty("line.separator");
+	}
+
+	@Test
+	public void testBeautifyJsonWindows () throws IOException {
+		getFiles();
+		System.setProperty("line.separator", "\r\n");
+		assertEquals(beautifulJson, JsonUtils.beautifyJson(uglyJson));
+		System.clearProperty("line.separator");
 	}
 
 	@Test
